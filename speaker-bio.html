@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Speaker Bio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Oswald:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0d0f; --surface: #141416; --border: #2a2a2e;
+    --accent: #c9a84c; --text-body: #d4d0c8; --text-muted: #7a7870;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-sub: 'Oswald', sans-serif;
+    --font-body: 'Crimson Pro', Georgia, serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text-body); font-family: var(--font-body); font-size: 19px; line-height: 1.75; min-height: 100vh; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+  .page { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 60px 32px 100px; }
+  .site-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 40px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
+  .site-name { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.04em; color: #f0ece0; }
+  .site-name a { color: inherit; text-decoration: none; }
+  .site-name a:hover { color: var(--accent); }
+  .notice { background: var(--surface); border-left: 3px solid var(--accent); padding: 14px 20px; margin-bottom: 48px; font-family: var(--font-sub); font-size: 0.85rem; font-weight: 300; letter-spacing: 0.06em; color: var(--text-muted); text-transform: uppercase; }
+  .notice a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .notice a:hover { border-color: var(--accent); }
+  .photo-block { float: right; margin: 0 0 32px 40px; text-align: center; }
+  .photo-block img { width: 160px; height: 200px; object-fit: cover; object-position: center top; display: block; border: 1px solid var(--border); filter: grayscale(15%); transition: filter 0.3s; }
+  .photo-block img:hover { filter: grayscale(0%); }
+  .bio-heading { font-family: var(--font-display); font-size: 3.2rem; letter-spacing: 0.03em; color: #f0ece0; line-height: 1; margin-bottom: 32px; }
+  .section-label { font-family: var(--font-sub); font-size: 0.72rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .bio-text p { margin-bottom: 1.4em; color: var(--text-body); }
+  .bio-actions { display: flex; gap: 12px; margin-top: 36px; clear: both; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-sub); font-size: 0.78rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; padding: 11px 20px; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); cursor: pointer; text-decoration: none; transition: border-color 0.2s, color 0.2s, background 0.2s; user-select: none; }
+  .btn:hover { border-color: var(--accent); color: var(--accent); background: #1a1a1c; }
+  .btn.copied { border-color: #5a9e6f; color: #5a9e6f; }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; fill: currentColor; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; clear: both; }
+  .divider-ornament { text-align: center; margin-top: -14px; }
+  .divider-ornament span { background: var(--bg); padding: 0 16px; color: var(--accent); font-family: var(--font-display); font-size: 1.1rem; letter-spacing: 0.1em; }
+  .page-footer { margin-top: 80px; padding-top: 32px; border-top: 1px solid var(--border); font-family: var(--font-sub); font-size: 0.75rem; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .page-footer a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .page-footer a:hover { color: var(--accent); }
+  @media (max-width: 560px) {
+    .bio-heading { font-size: 2.2rem; }
+    .photo-block { float: none; margin: 0 0 32px 0; }
+    .photo-block img { width: 120px; height: 150px; }
+    .page-footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="site-header">
+    <div class="site-name"><a href="/">Steve Oglesby</a></div>
+  </header>
+
+  <div class="notice">
+    Some people prefer a first-person bio &mdash; <a href="#first-person">scroll down for that version.</a>
+  </div>
+
+  <section id="third-person">
+    <h1 class="bio-heading">Speaker Bio</h1>
+
+    <div class="photo-block">
+      <img src="/images/steve-oglesby.jpg" alt="Steve Oglesby headshot" />
+    </div>
+
+    <div class="bio-text" id="bio-third">
+      <p>Steve Oglesby is a constitutional conservative, speaker, and field coordinator for the John Birch Society, where he has served since 2022. Born and raised in Northeast Texas, Steve is a graduate of Texas A&amp;M University-Texarkana with a Bachelor of General Studies, concentrating in psychology and marketing.</p>
+      <p>Before joining JBS, Steve spent more than 25 years as an entrepreneur and consultant, helping businesses grow &mdash; work that sharpened his instinct for practical solutions over abstract theory. He brings that same instinct to his speaking, focusing not just on naming the problem clearly, but on what citizens can do about it starting today.</p>
+      <p>As a JBS field coordinator, Steve finds people who want to make a difference, helps them connect with like-minded citizens, and works to start local chapters across his region. The John Birch Society produces an enormous body of educational material, and Steve&rsquo;s role is to help people navigate the breadth of that material &mdash; finding what matters to them and showing them how to act on it. He connects members locally, regionally, and nationally, building a network of engaged Americans who believe liberty is worth fighting for.</p>
+      <p>Steve has spoken on topics including the war on farmers, green energy boondoggles, the fight against the sexualization of children, and judicial accountability. His approach is grounded in the Constitution and animated by a conviction that liberty is worth defending &mdash; and winnable.</p>
+      <p>Since 2011, Steve has been a member of the Bowie County Patriots, a group of constitutional conservatives with a Christian worldview that has met every Thursday since 2009. He has led the group for several years, and in that role has brought in guest speakers from across the region &mdash; men and women who share the group&rsquo;s values and the conviction that informed citizens can make a difference.</p>
+      <p>Outside of his JBS work, Steve is an active member of Church on the Rock in Texarkana, where he helped develop and lead the church&rsquo;s video recording and streaming ministry, served in a volunteer counseling ministry, and currently serves on the safety team. His friends describe him as relentlessly joyful and optimistic &mdash; and he tries to bring a little humor and a lot of hope to every room he walks into.</p>
+    </div>
+
+    <div class="bio-actions">
+      <button class="btn" onclick="copyBio('bio-third', this)">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        <span>Copy Bio</span>
+      </button>
+      <a class="btn" href="/images/steve-oglesby.jpg" download="Steve-Oglesby-Headshot.jpg">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        <span>Download Photo</span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider">
+  <div class="divider-ornament"><span>&#x2767;</span></div>
+
+  <section id="first-person">
+    <div class="section-label">First Person</div>
+    <h2 class="bio-heading">In My Own Words</h2>
+
+    <div class="bio-text" id="bio-first">
+      <p>I&rsquo;ve been patriotic since I was a child, conservative since I started paying attention to politics, and a constitutional conservative since joining the John Birch Society in 2012. Since November 2022 I&rsquo;ve served as a JBS field coordinator, working across my region to educate and equip Americans who believe the Constitution means what it says.</p>
+      <p>My work as a field coordinator is about people. I find those who want to make a difference, help them connect with like-minded citizens, and work to start local chapters across the region. JBS produces an enormous body of educational material, and I help people navigate the breadth of it, focus on what matters to them, and show them how to act on it. I connect members locally, regionally, and nationally, building a network of people who believe engaged citizens can turn this country around.</p>
+      <p>I&rsquo;m a Northeast Texas native and a graduate of Texas A&amp;M University-Texarkana, with a Bachelor of General Studies concentrating in psychology and marketing. Before coming to JBS, I spent more than 25 years as an entrepreneur and consultant helping others build and grow their businesses &mdash; which is why I can&rsquo;t stand a talk that only names the problem without showing you what to do about it. Everything I bring to the stage comes with solutions you can act on starting today.</p>
+      <p>I&rsquo;ve spoken on topics including the war on farmers, green energy boondoggles, the fight against the sexualization of children, and judicial accountability. My goal is always the same: leave people better informed, better equipped, and more hopeful than when they walked in.</p>
+      <p>Since 2011 I&rsquo;ve been part of the Bowie County Patriots &mdash; a group of constitutional conservatives with a Christian worldview that has met every Thursday since 2009. I&rsquo;ve led the group for several years. Traveling the region the way I do, I meet a lot of remarkable people, and we bring in guest speakers almost every week who share our values and our belief that engaged citizens can turn this country around.</p>
+      <p>I&rsquo;m an active member of Church on the Rock in Texarkana, where I helped launch the video recording and streaming team, served in a volunteer counseling ministry, and currently serve on the safety team. My friends call me relentlessly joyful and optimistic. I try to earn that every time I speak.</p>
+    </div>
+
+    <div class="bio-actions">
+      <button class="btn" onclick="copyBio('bio-first', this)">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+        <span>Copy Bio</span>
+      </button>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    <span>steveoglesby.com</span>
+    <div style="display:flex; gap: 24px; flex-wrap: wrap; justify-content: flex-end;">
+      <a href="mailto:soglesby@jbs.org">soglesby@jbs.org</a>
+      <a href="mailto:steveoglesby@proton.me">steveoglesby@proton.me</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+function copyBio(sectionId, btn) {
+  const section = document.getElementById(sectionId);
+  const paragraphs = section.querySelectorAll('p');
+  const text = Array.from(paragraphs).map(p => p.innerText).join('\n\n');
+  const span = btn.querySelector('span');
+  const original = span.textContent;
+
+  const finish = () => {
+    btn.classList.add('copied');
+    span.textContent = 'Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); span.textContent = original; }, 2500);
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(finish).catch(() => fallback(text, finish));
+  } else {
+    fallback(text, finish);
+  }
+}
+
+function fallback(text, finish) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  finish();
+}
+</script>
+
+</body>
+</html>
